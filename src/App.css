@@ -39,21 +39,17 @@
 }
 
 .gradient {
+  position: relative;
   height: fit-content;
   z-index: 3;
   width: 100%;
   max-width: 640px;
-  background-image: radial-gradient(
-      at 27% 37%,
-      hsla(215, 98%, 61%, 1) 0px,
-      transparent 0%
-    ),
-    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
-    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
-    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
-    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
-    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
-    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  background-image: radial-gradient(at 97% 21%, #f3a712 0%, transparent 70%),
+    radial-gradient(at 52% 99%, #bb4e75 0%, transparent 70%),
+    radial-gradient(at 10% 29%, #4e8acf 0%, transparent 70%),
+    radial-gradient(at 97% 96%, #a3317b 0%, transparent 70%),
+    radial-gradient(at 33% 50%, #009f9d 0%, transparent 70%),
+    radial-gradient(at 79% 53%, #f26b6b 0%, transparent 70%);
   position: absolute;
   content: "";
   width: 100%;
