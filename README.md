@@ -33,3 +33,4 @@
     click on the "Summarize" button. The application will then use GPT-4 to generate a summary of the article for you.
     
 
+![summary (2)](https://user-images.githubusercontent.com/115173705/233774802-5f33f6fc-8330-4861-8c9e-898a6a186b0e.png)
