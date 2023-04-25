@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-
 import { copy, linkIcon, loader, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
 
 const Demo = () => {
+  // State hooks to manage user input, fetched data, and URL history
   const [article, setArticle] = useState({
     url: "",
     summary: "",
   });
-
   const [allArticles, setAllArticles] = useState([]);
   const [copied, setCopied] = useState("");
 
+  // Fetch data with lazy query when the user submits the form
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
+  // Load URL history from local storage on component mount
   useEffect(() => {
     const articlesFromLocalStorage = JSON.parse(
       localStorage.getItem("articles")
@@ -23,37 +24,44 @@ const Demo = () => {
     }
   }, []);
 
+  // Handle user input form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Fetch summary for URL using the getSummary function
     const { data } = await getSummary({ articleUrl: article.url });
 
+    // If summary is returned, add new article to state and update URL history
     if (data?.summary) {
       const newArticle = { ...article, summary: data.summary };
       const updatedAllArticles = [newArticle, ...allArticles];
 
-      setAllArticles(newArticle);
+      setArticle(newArticle);
       setAllArticles(updatedAllArticles);
 
+      // Save updated URL history to local storage
       localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
     }
   };
 
-  // copy the url and toggle the icon for user feedback
+  // Copy URL to clipboard and toggle icon to provide user feedback
   const handleCopy = (copyUrl) => {
     setCopied(copyUrl);
     navigator.clipboard.writeText(copyUrl);
     setTimeout(() => setCopied(false), 3000);
   };
 
+  // Handle keyboard submission on Enter key press
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       handleSubmit(e);
     }
   };
 
+  // Render the search form, URL history, and summary section
   return (
     <section className="mt-16 w-full max-w-x1">
-      {/* search */}
+      {/* Search form */}
       <div className="flex flex-col w-full gap-2">
         <form
           className="relative flex justify-center item-center"
